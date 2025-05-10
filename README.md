@@ -1,21 +1,24 @@
 # 🏗️ Structure ID Manager
-A simple terminal-based Python application that allows you to **create**, **view**, **update**, and **delete** structure IDs using a local CSV file. Ideal for infrastructure and asset management systems documentation.
+
+A simple and efficient terminal-based Python application that allows you to **create**, **view**, **update**, and **delete** structure IDs — all synced with a local CSV file and mirrored as folders on your filesystem. Ideal for infrastructure inspection workflows and asset documentation.
 
 ---
 
 ## 📂 Features
 
-- ➕ Add new structure IDs  
-- 📄 View all saved IDs  
-- ✏️ Update existing structure IDs  
-- ❌ Delete specific structure IDs  
-- 🧾 Automatically loads and saves from `Structure ID.csv`  
+- ➕ Add new structure IDs
+- 📄 View all saved IDs
+- ✏️ Update existing structure IDs (with optional folder rename)
+- ❌ Delete structure IDs (with optional folder deletion)
+- 📁 Automatically generate folders for each ID
+- 🔁 Regenerate all missing folders from existing IDs
+- 🧾 Auto-saves data in `Structure ID.csv`
 
 ---
 
 ## 💡 How It Works
 
-The app manages structure IDs in a CSV file named `Structure ID.csv`. All operations are performed via the terminal/command line.
+The app manages structure IDs in a CSV file (`Structure ID.csv`) and creates corresponding folders under a root directory called `Structure IDs`. All actions are performed through the terminal menu.
 
 ---
 
@@ -23,16 +26,17 @@ The app manages structure IDs in a CSV file named `Structure ID.csv`. All operat
 
 ### 🔧 Prerequisites
 
-Make sure you have **Python 3** and **pandas** installed.
+Ensure you have **Python 3** and **pandas** installed.
 
-Install `pandas` if needed:
+Install `pandas` via pip if needed:
+
 ```
 pip install pandas
 ```
 
-## 📥 Cloning the Repository
+---
 
-To clone this repository to your local machine:
+### 📥 Cloning the Repository
 
 ```
 git clone https://github.com/punisher1998171/structure-id-manager.git
@@ -42,7 +46,7 @@ python structure_id_manager.py
 
 ---
 
-## 📘 Example Use
+## 🧪 Example Use
 
 ```
 🛠️ Welcome to Structure ID Manager 🛠️
@@ -52,18 +56,20 @@ Choose an option:
 2. View All IDs
 3. Update ID
 4. Delete ID
-5. Exit
+5. Generate Folders
+6. Exit
 
-Enter your choice (1-5): 1
+Enter your choice (1-6): 1
 Enter the new ID: STR-01-1232
 ✅ Structure ID added successfully!
+✅ Structure ID folders created successfully!
 ```
 
 ---
 
-## 📁 Data File Format
+## 📁 Folder & Data Structure
 
-The application uses a single CSV file named `Structure ID.csv` with the following structure:
+### CSV File (`Structure ID.csv`)
 
 ```
 Structure ID
@@ -72,12 +78,24 @@ STR-01-1233
 ...
 ```
 
-If the file does not exist, it will be created automatically.
+### Folder Structure (`Structure IDs/`)
+
+```
+Structure IDs/
+├── STR-01-1232/
+├── STR-01-1233/
+...
+```
+
+- Folders are automatically created or renamed based on structure ID changes.
+- If the folder doesn’t exist, it will be created upon adding or via the “Generate Folders” option.
+- Folder deletion is optional when deleting a structure ID.
 
 ---
 
-## 📌 Notes
+## 🧠 Notes
 
-- The script ensures that no duplicate IDs are added.
-- All inputs are automatically converted to uppercase for consistency.
-- Empty states are handled gracefully (e.g. no IDs yet, no ID entered).
+- Duplicate ID entries are not allowed.
+- All inputs are automatically converted to uppercase.
+- Missing CSV or folder directories are created automatically.
+- Safe and interactive prompts guide every action.
